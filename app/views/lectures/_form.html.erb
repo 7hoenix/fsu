@@ -1,0 +1,31 @@
+<%= form_for(@lecture) do |f| %>
+  <% if @lecture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lecture.errors.count, "error") %> prohibited this lecture from being saved:</h2>
+
+      <ul>
+      <% @lecture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :lecturename, " Class Name" %><br>
+    <%= f.text_field :lecturename %>
+  </div>
+  <div class="field">
+    <%= f.label :lecturedescription , "Class Description" %><br>
+    <%= f.text_area :lecturedescription %>
+  </div>
+  <div class="field">
+    <%= f.label :instructorid, "Instructor ID Number" %><br>
+    <%= f.number_field :instructorid %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

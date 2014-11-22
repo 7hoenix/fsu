@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  classid: 1
+  starttime: 2014-11-17 13:47:13
+  endtime: 2014-11-17 13:47:13
+
+two:
+  classid: 1
+  starttime: 2014-11-17 13:47:13
+  endtime: 2014-11-17 13:47:13

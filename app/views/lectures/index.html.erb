@@ -1,0 +1,28 @@
+<%=render 'pages/home' unless user_signed_in? %>
+
+<h1>Listing lectures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Instructor </th>
+      <th>Lecturename</th>
+      <th>Lecturedescription</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lectures.each do |lecture| %>
+      <tr>
+        <td><%= image_tag @instructors.find(lecture.instructorid).picture.url(:medium) %></td>
+        <td><%= lecture.lecturename %></td>
+        <td><%= lecture.lecturedescription %></td>
+        <td><%= link_to 'Details', lecture %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

@@ -1,19 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Lecturename:</strong>
-  <%= @lecture.lecturename %>
-</p>
+  <h1><%= @lecture.lecturename %></h1>
 
-<p>
-  <strong>Lecturedescription:</strong>
-  <%= @lecture.lecturedescription %>
-</p>
 
-<p>
-  <strong>Instructorid:</strong>
-  <%= @lecture.instructorid %>
-</p>
+  <h3><%= @lecture.lecturedescription %></h3>
+
+  <strong>Led by:</strong>
+    <h5><%= @instructor.instructorname %></h5>
+
+
+<h1>Class Times</h1>
+  <table>
+    <th>
+      <tr>
+        <td>Date</td>
+      <td>Time</td>
+      <td>Duration</td>
+    </tr>
+    </th>
+    <% if user_signed_in? %>
+
+    <% @schedules.each do |schedule| %>
+      <% if schedule.lecture_id == @lecture.id %>
+      <tr><td><%= schedule.day %></td>
+      <td><%= schedule.start %></td>
+      <td><%= schedule.duration %></td>
+      <td><%= button_to "Register for this class", :method => "register" %></td></tr>
+      <% end %>
+      <% end %>
+    <% end %>
+  </table>
+
+  <% if current_user.is_admin == true %>
+  <%= link_to "Pick a date", new_lecture_schedule_path(:lecture_id => @lecture.id) %>
+  <% end %>
+
+
 
 <%= link_to 'Edit', edit_lecture_path(@lecture) %> |
 <%= link_to 'Back', lectures_path %>

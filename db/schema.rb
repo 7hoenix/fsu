@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117233841) do
+ActiveRecord::Schema.define(version: 20141122232653) do
 
-# Could not dump table "instructors" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "attends", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "schedule_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "instructors", force: true do |t|
+    t.string   "instructorname"
+    t.string   "qualifications"
+    t.string   "instructordescription"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
 
   create_table "lectures", force: true do |t|
     t.string   "lecturename"
@@ -26,10 +42,12 @@ ActiveRecord::Schema.define(version: 20141117233841) do
 
   create_table "schedules", force: true do |t|
     t.integer  "classid"
-    t.datetime "starttime"
-    t.datetime "endtime"
+    t.date     "day"
+    t.time     "start"
+    t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lecture_id"
   end
 
   create_table "users", force: true do |t|
@@ -45,9 +63,9 @@ ActiveRecord::Schema.define(version: 20141117233841) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "home"
-    t.integer  "cell"
     t.string   "name"
+    t.integer  "cell"
+    t.boolean  "is_admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

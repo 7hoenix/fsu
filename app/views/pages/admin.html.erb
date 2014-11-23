@@ -1,0 +1,23 @@
+
+<% if current_user.is_admin == true %>
+
+
+      <%= link_to "New Instructor", new_instructor_path %>
+      <br>
+      <%= link_to "New Class", new_lecture_path %>
+
+      <br>
+      <br>
+
+      <table>
+        <th>
+          <tr><td>Class Name</td>
+          </th>
+
+      <% @lectures.each do |lecture| %>
+
+
+        <tr><td><%= link_to "#{lecture.lecturename}", lecture_path(lecture.id) %></td>
+      <td><%= link_to "Pick a date", new_lecture_schedule_path(:lecture_id => lecture.id) %></td>
+    </tr></table><% end %>
+<% end %>

@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :instructors
 
-  resources :schedules
+  resources :lectures do
+    resources :schedules
+  end
 
-  resources :lectures
-
-  devise_for :users
-
-
-  get 'pages/home'
 
    root "lectures#index"
-    get "about" => "pages#about"
+   get "about" => "pages#about"
+   get 'pages/home'
+   get 'pages/admin'
 
 end

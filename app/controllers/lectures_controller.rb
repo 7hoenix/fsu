@@ -11,6 +11,8 @@ class LecturesController < ApplicationController
   # GET /lectures/1
   # GET /lectures/1.json
   def show
+    @schedules = Schedule.all
+    @instructor = Instructor.find_by_id(params[:id])
   end
 
   # GET /lectures/new
@@ -70,6 +72,6 @@ class LecturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lecture_params
-      params.require(:lecture).permit(:lecturename, :lecturedescription, :instructorid)
+      params.require(:lecture).permit(:lecturename, :lecturedescription, :instructorid, :instructorname)
     end
 end

@@ -1,5 +1,19 @@
 <%= debug(params) %>
-words
-<%=debug(:schedule_day)%>
 
-<%= params.inspect %>
+<%= params[:lecturename] %>
+
+
+<% @attends.each do |attend| %>
+<p>Attend.id <%= attend.id %></p>
+<br>
+<p>Attend.user_id <%= attend.user_id %></p>
+<br>
+<p>Attend.schedule_id <%= attend.schedule_id %></p>
+<% end %>
+
+
+<%= form_for @attend do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :schedule_id, :value => params[:schedule_id] %>
+  <%= f.submit 'Confirm Registration', class: "btn btn-primary" %>
+<% end %>

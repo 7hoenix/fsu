@@ -9,9 +9,10 @@ Rails.application.routes.draw do
 
   resources :attends
 
-   root "lectures#index"
+
    get "about" => "pages#about"
    get 'pages/home'
    get 'pages/admin'
+   root 'pages#main'
 
 end

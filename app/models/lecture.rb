@@ -3,4 +3,5 @@ class Lecture < ActiveRecord::Base
   has_one :instructor
   has_many :users
 
+
 end

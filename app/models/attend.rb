@@ -4,13 +4,16 @@ class Attend < ActiveRecord::Base
   validates_presence_of :user_id, :schedule_id
 
 
-#Record a new attendance
-  def attending(user,schedule)
-  unless Attend.exists?(user,schedule)
-  create(:user_id => user, :schedule_id => schedule, :status => 'attending')
+  def self.exists?(user,schedule)
+    not find_by_user_id_and_schedule_id(user,schedule).nil?
+  end
+
+  def self.request(user,schedule)
+    unless user == schedule or Attend.exists?(user,schedule)
+      transaction do
+      create(:user => user, :schedule => schedule)
+    end
+    end
   end
 
   end
-
-  end
-

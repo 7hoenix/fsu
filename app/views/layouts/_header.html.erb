@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-static-top navbar-default" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,21 +11,23 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to "FSU", root_path, class: "navbar-brand"%>
-      </div>
-      <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "About", about_path %></li>
-          <li><%= link_to "Classes", lectures_path %></li>
-          <li><%= link_to "Meet the Instructors", instructors_path %></li>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Classes", lectures_path %></li>
+        <li><%= link_to "Meet the Instructors", instructors_path %></li>
 
-          <% if user_signed_in? %>
-            <% if current_user.is_admin == true %>
-            <li><%= link_to "Dashboard", pages_admin_path %></li>
-            <% end %>
-          <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+        <% if user_signed_in? %>
+          <% if current_user.is_admin == true %>
+          <li><%= link_to "Dashboard", pages_admin_path %></li>
+          <% end %>
+        <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+        <li><%= link_to "Log in", new_user_session_path %></li>
         <% end %>
-              </ul>
-        </div>
-      </div>
+      </ul>
+    </div>
+  </div>
 </nav>

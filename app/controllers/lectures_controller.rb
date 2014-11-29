@@ -13,7 +13,7 @@ class LecturesController < ApplicationController
   def show
     @schedules = Schedule.all
     @instructor = Instructor.find_by_id(params[:id])
-    @attend =  Attend.create
+    @attends =  Attend.new
   end
 
   # GET /lectures/new
@@ -64,6 +64,8 @@ class LecturesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

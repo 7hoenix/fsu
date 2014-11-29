@@ -1,0 +1,10 @@
+
+<%= debug(params) %>
+
+<% @attends.each do |attend| %>
+<%= attend.id %>
+<br>
+<%= attend.user_id %>
+<br>
+<%= attend.schedule_id %>
+<% end %>

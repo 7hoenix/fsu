@@ -1,20 +1,19 @@
 class AttendsController < ApplicationController
+ before_filter :setup_attends
+
   def index
     @attends = Attend.all
   end
 
   def new
     @attend = Attend.new
+    @attends = Attend.all
   end
 
   def create
-    @attend = Attend.new(attends_params)
-
-    respond_to do |format|
-      if @attend.save
-        format.html { redirect_to @attend, notice: 'Register for class was successfully created.' }
-    end
-  end
+    @attend = Attend.new(attend_params)
+     @attend.save
+    redirect_to lectures_path
   end
 
   def update
@@ -27,10 +26,25 @@ class AttendsController < ApplicationController
     end
   end
 
+  #Record a new attendance
+  def attending(user, schedule)
+    unless Attend.exists?(user, schedule)
+      Attend.create(:user_id => user, :schedule_id => schedule)
+      Attend.save
+    end
+  end
+
+
   private
+  def setup_attends
+    @user = current_user.id
+    @schedule = Schedule.find_by_id(:schedule_id)
+
+  end
 
   def attend_params
     params.require(:attend).permit(:schedule_id, :user_id, :status)
   end
+
 
 end

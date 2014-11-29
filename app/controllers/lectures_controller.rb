@@ -13,6 +13,7 @@ class LecturesController < ApplicationController
   def show
     @schedules = Schedule.all
     @instructor = Instructor.find_by_id(params[:id])
+    @attend =  Attend.create
   end
 
   # GET /lectures/new

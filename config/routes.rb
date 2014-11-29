@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :schedules
   end
 
+  resources :attends
 
    root "lectures#index"
    get "about" => "pages#about"

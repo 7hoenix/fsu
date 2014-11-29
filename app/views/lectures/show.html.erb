@@ -25,8 +25,8 @@
       <tr><td><%= schedule.day %></td>
       <td><%= schedule.start %></td>
       <td><%= schedule.duration %></td>
-      <td><%= button_to "Register for this class", :method => "register" %></td></tr>
-      <% end %>
+                <td><%= link_to 'Register', new_attend_path(params =>{:schedule_id => schedule.id, :schedule_day => schedule.day, :lecturename => @lecture.lecturename}) %></td>
+            <% end %>
       <% end %>
     <% end %>
   </table>
@@ -39,3 +39,4 @@
 
 <%= link_to 'Edit', edit_lecture_path(@lecture) %> |
 <%= link_to 'Back', lectures_path %>
+
